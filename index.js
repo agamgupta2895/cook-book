@@ -16,7 +16,7 @@ app.use(cors());
 app.use("/recipes", recipeRoutes);
 app.use("/users", userRoutes);
 app.use("/", (req, res) => {
-  res.send("Cook book API is working!");
+  res.send("Cook book API is working, enjoy!");
 });
 app.use((req, res) => {
   res.status(404).send("Not Found");
