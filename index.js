@@ -15,7 +15,7 @@ app.use(cors());
 
 app.use("/recipes", recipeRoutes);
 app.use("/users", userRoutes);
-app.use("/", (req, res) => {
+app.use("/status", (req, res) => {
   res.send("Cook book API is working, enjoy!");
 });
 app.use((req, res) => {
@@ -24,14 +24,22 @@ app.use((req, res) => {
 
 const PORT = process.env.PORT || 5000;
 
+
+// app.listen(PORT, () => {
+//   console.log("Server listening on port " + PORT);
+// });
+
+const connection = "mongodb://localhost:27017/cook-book";
+
 mongoose
-  .connect(process.env.CONNECTION_URL, {
+  .connect(connection, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
   .then(() => {
     app.listen(PORT, () => {
       console.log("Server listening on port " + PORT);
+      console.log(process.env)
     });
   })
   .catch((error) => {
